@@ -1,0 +1,14 @@
+## SveltekitとGoで実装してみて学んだことのまとめ
+
+
+プライベートリポジトリとかで色々Svelte及びSveltekitについて勉強して学んだことをまとめて行く。
+しかし基本は[公式ドキュメント](https://kit.svelte.dev/docs)及び、「Svelte hogehoge REPL」とかで検索すると実装例が出てくるので、それで解決する。あとはSvelteのDiscordとか基本のGitHubとかを漁ると良い。当たり前のことしか書いていない...
+
+## 躓いたところ
+
+### ディレクトリ構造がルーティング他に反映される。
+
+- まず基本として「/projectRoot/src」の「src」に色々配置していき、これによってルーティングやモジュールへのパスのショートカット、などなど色々行ってくれる。
+ src配下には、「routes」フォルダ、「lib」フォルダ、「hooks.js」などがあり、これらにファイルを配置していくことで、よしなにしてくれる。
+
+  - 「routes」フォルダには「index.svelte」がブランクプロジェクト作成時に生成される。これを起点にルーティングを行っていく。単純にファイルを配置するだけなので、「/projectRoot/src/routes/auth/login.svelte」とかファイルを配置すると、例えば「localhost:8080/auth/login」
