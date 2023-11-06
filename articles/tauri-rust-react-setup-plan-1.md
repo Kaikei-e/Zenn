@@ -214,3 +214,6 @@ domain = { path = "../domain" }
 一旦これで今回の記事は終わりにします。
 追加で便利なことや必須の情報が判明したら、追記するか別記事にする予定です。
 
+### 参考
+
+- [Rustのモジュラモノリスについて](https://speakerdeck.com/estie/rust-he-mowakaranai-dot-dot-dot-number-2?slide=30)
