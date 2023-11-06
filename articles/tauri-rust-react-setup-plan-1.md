@@ -20,8 +20,8 @@ published: true
 #### Rust側の設定（SQLiteを選択した場合）
 
 DBにSQLiteを使う場合、ホットリロードを有効にするとDBファイルの更新によって、ホットリロードが乱発してしまう。
-そのため、***.taurignore***を作成する。
-この[GitHub Issue](https://github.com/tauri-apps/tauri/issues/4617)を参考にした。
+そのため、***.taurignore***を作成します。
+この[GitHub Issue](https://github.com/tauri-apps/tauri/issues/4617)を参考にしました。
 例えば、プロジェクトルートを
 
 ```
@@ -43,7 +43,8 @@ Application
 ```
 
 
-DriverというディレクトリにDBに関する機能を置き、その配下にSQLiteのDBファイルを配置する場合には、
+DriverというディレクトリにDBに関する機能を置きます。
+そして、その配下にSQLiteのDBファイルを配置する場合には、
 ```path
 /Application/src-tauri/.taurignore
 Application
@@ -56,14 +57,15 @@ Application
 └── src (UI & Front)
 ```
 
-とignoreファイルを作成して、以下のように記述する。  
+とignoreファイルを作成します。
+ファイル内には、以下のように記述します。  
 
 ```ignorelang
 # .taurignore
 /src/driver/db/data/*
 ```
 
-これによりホットリロード時に、DBファイルの更新が発生して約１秒おきにリロードされて画面がちらつく問題が解決する。  
+これによりホットリロード時に、DBファイルの更新が発生して約１秒おきにリロードされて画面がちらつく問題が解決できました。  
 
 
 ### React、フロントエンド側（Tailwind CSS）の場合  
@@ -76,7 +78,7 @@ Application
 └── /src (UI & Front)
 ```
 
-Application配下に通常のReactプロジェクト同様に実際のコードを記述していく形になり、package.jsonなども通常通りにApplicationの直下に生成される。
+Application配下に通常のReactプロジェクト同様に実際のコードを記述していく形になり、package.jsonなども通常通りにApplicationの直下に生成されます。
 
 ```path
 /Application
@@ -102,18 +104,18 @@ Application配下に通常のReactプロジェクト同様に実際のコード�
 
 ```
 
-といった感じだ。
-TauriでReactを使った場合のディレクトリ構成で特徴的なのは、ただ ***/src-tauri***がRust自体のプロジェクトルートとなる点だ。
+といった感じです。
+TauriでReactを使った場合のディレクトリ構成で特徴的なのは、ただ ***/src-tauri***がRust自体のプロジェクトルートとなる点です。
 
 では、本題のTailwind CSSの設定について。
-Tailwind CSSの設定は他にも記事がたくさんあるので、そちらを参考にしていただくとして、問題は以下のコマンド実行時のホットリロードが機能するかだと思う。
+Tailwind CSSの設定は他にも記事がたくさんあるので、そちらを参考にしていただくとして、問題は以下のコマンド実行時のホットリロードが機能するかだと思います。
 
 ```bash
 cargo tauri dev
 ```
 
-このコマンドでフロントエンド、つまりUIを含めたReact側とRust側の両方のコードをホットリロードできる。
-しかし、Tailwind CSSの設定をする際には、CSSのコンパイルが必要になるので、以下のように ***npm run dev*** と ***npm run build*** コマンドを変更する。
+このコマンドでフロントエンド、つまりUIを含めたReact側とRust側の両方のコードをホットリロードできます。
+しかし、Tailwind CSSの設定をする際には、CSSのコンパイルが必要になるので、以下のように ***npm run dev*** と ***npm run build*** コマンドを変更します。
 
 ```json
 {
@@ -124,16 +126,16 @@ cargo tauri dev
 }
 ```
 
-これにより、CSSのコンパイルが ***cargo tauri dev*** 実行時に走るようになる。
+これにより、CSSのコンパイルが ***cargo tauri dev*** コマンドを実行した際に走るようになります。
 
 ### その他
 
 #### Rustのマルチクレート化の方法について
 
 
-「マルチクレート化」という表現が正しいのかわからないが、要はモジュラモノリスのような形で、Rustのプロジェクトを分割していきたい。
+「マルチクレート化」という表現が正しいのかわからないですが、要はモジュラモノリスのような形で、Rustのプロジェクトを分割していきたいシナリオで考えます。
 
-例えば、以下のような構成にしたい。  
+例えば、以下のような構成にしたいときに役立ちます。  
 
 ```path
 .
@@ -163,7 +165,7 @@ cargo tauri dev
 
 ```
 
-このような構成にしたい場合、各ライブラリを生成して（ *lib.rsが存在することが肝*）、プロジェクトルートの***Cargo.toml*** に以下のように記述する。
+このような構成にしたい場合は、各ライブラリを生成して（ *lib.rsが存在することが肝*）、プロジェクトルートの***Cargo.toml*** に以下のように記述します。
 
 
 ```toml
@@ -184,7 +186,7 @@ domain = { path = "src/domain", version = "0.1.0" }
 driver = { path = "src/driver", version = "0.1.0" }
 ```
 
-そして、例えばdomainをdriverから使いたい場合には、driverのCargo.tomlに以下のように記述する。
+そして、例えばdomainをdriverから使いたい場合には、driverのCargo.tomlを以下のようにします。
 
 
 ```toml
@@ -193,7 +195,7 @@ driver = { path = "src/driver", version = "0.1.0" }
 domain = { path = "../domain" }
 ```
 
-これにより、domainをdriverから使うことができるようになる。  
+これにより、domainをdriverから使うことができるようになるかと思います。  
 
 
 ### 以上
