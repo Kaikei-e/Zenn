@@ -43,21 +43,24 @@ Application
 ```
 
 
-DriverというディレクトリにDBに関する機能を置きます。
-そして、その配下にSQLiteのDBファイルを配置する場合には、
+driverというディレクトリにDBに関する機能を置き、driver/db配下にSQLiteのDBファイルを配置すると仮定すると、
 ```path
-/Application/src-tauri/.taurignore
-Application
-├── src-tauri (Rust)
-│   ├── src
-│   │   └── (contents of /src-tauri/src not listed)
-│   ├── Cargo.toml
-│   ├── tauri.conf.json
-│   └── .taurignore
-└── src (UI & Front)
+/Application
+├── /src-tauri (Rust)
+│   ├── /src
+│   │   ├── /driver
+│   │   │   ├── /db
+│   │   │   │   ├── /data
+│   │   │   │   │   ├── /db.sqlite
+│   │   │   │   └── /initial_setup
+│   │   │   └── main.rsとか
+│   │   ├── Cargo.toml
+│   │   ├── tauri.conf.json
+│   │   └── .taurignore
+└── /src (UI & Front)
 ```
 
-とignoreファイルを作成します。
+と ***.taurignore***ファイルを作成します。
 ファイル内には、以下のように記述します。  
 
 ```ignorelang
@@ -79,6 +82,8 @@ Application
 ```
 
 Application配下に通常のReactプロジェクト同様に実際のコードを記述していく形になり、package.jsonなども通常通りにApplicationの直下に生成されます。
+
+全体像は以下のようになります。  
 
 ```path
 /Application
