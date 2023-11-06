@@ -2,7 +2,7 @@
 title: "Tauriを用いた開発での、もろもろセットアップについて"
 emoji: "🖥️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["tauri", "rust", "react", "typescript", "bun", "sqlite", "tailwindcss"]
+topics: ["tauri", "rust", "typescript", "bun", "tailwindcss"]
 published: true
 ---
 
