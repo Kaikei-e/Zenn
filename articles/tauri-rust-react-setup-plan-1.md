@@ -57,6 +57,11 @@ driverというディレクトリにDBに関する機能を置き、driver/db配
 │   │   ├── Cargo.toml
 │   │   ├── tauri.conf.json
 │   │   └── .taurignore
+│   ├── build.rs
+│   ├── tauri.conf.json
+│   ├── .taurignore
+│   ├── Cargo.toml
+│   └── Cargo.lock
 └── /src (UI & Front)
 ```
 
@@ -98,6 +103,7 @@ Application配下に通常のReactプロジェクト同様に実際のコード�
 ├── /src-tauri
 │   ├── /src
 │   │   └── (contents of /src-tauri/src not listed)
+│   ├── build.rs
 │   ├── Cargo.toml
 │   ├── tauri.conf.json
 │   └── .taurignore
