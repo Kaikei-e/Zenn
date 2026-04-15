@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       zenn-cli:
-        specifier: latest
-        version: 0.4.5
+        specifier: ^0.4.7
+        version: 0.4.7
 
 packages:
 
@@ -40,8 +40,8 @@ packages:
     engines: {node: '>=14.16'}
     hasBin: true
 
-  is-wsl@3.1.0:
-    resolution: {integrity: sha512-UcVfVfaK4Sc4m7X3dUSoHoozQGBEFeDC+zVo06t98xe8CzHSZZBekNXH+tu0NalHolcJ/QAGqS46Hef7QXBIMw==}
+  is-wsl@3.1.1:
+    resolution: {integrity: sha512-e6rvdUCiQCAuumZslxRJWR/Doq4VpPR82kqclvcS0efgt430SlGIk05vdCN58+VrzgtIcfNODjozVielycD4Sw==}
     engines: {node: '>=16'}
 
   open@10.2.0:
@@ -59,8 +59,8 @@ packages:
     resolution: {integrity: sha512-h3Fbisa2nKGPxCpm89Hk33lBLsnaGBvctQopaBSOW/uIs6FTe1ATyAnKFJrzVs9vpGdsTe73WF3V4lIsk4Gacw==}
     engines: {node: '>=18'}
 
-  zenn-cli@0.4.5:
-    resolution: {integrity: sha512-lrG5Bb8j8jhVKRLE1T6Fe/wYV+jBDaRZFHzDatS/tcxcoV1oNaK812PeXYr2rtvH77trZaIag6fYltGXAIN0oA==}
+  zenn-cli@0.4.7:
+    resolution: {integrity: sha512-PkCvxOmP5bvSRx+cGFaXBkOABUez0XVioq91X39oziUppwDPFiT47qlNPX3In8W0/ySASq0ur49TkOTtv5fiIw==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
@@ -85,7 +85,7 @@ snapshots:
     dependencies:
       is-docker: 3.0.0
 
-  is-wsl@3.1.0:
+  is-wsl@3.1.1:
     dependencies:
       is-inside-container: 1.0.0
 
@@ -102,9 +102,9 @@ snapshots:
 
   wsl-utils@0.1.0:
     dependencies:
-      is-wsl: 3.1.0
+      is-wsl: 3.1.1
 
-  zenn-cli@0.4.5:
+  zenn-cli@0.4.7:
     dependencies:
       open: 10.2.0
       package-manager-detector: 1.6.0
