@@ -12,7 +12,7 @@ published: true
 試してフィードバックをもらうことが、このPlectoをよくする一番の近道だと思っています。
 是非、 ```./examples/try.sh <n>```から、お好きな例を触ってみてください。
 
-https://github.com/Kaikei-e/Plecto
+https://github.com/Kaikei-e/PlectoProxy
 
 では、本題に入ります。
 掲題の通りに、WebAssemblyにComponent Modelが導入されたことで、型付き・多言語・組み合わせ可能なフィルターを開発者の好みの言語で記述できるようになりました。
@@ -78,7 +78,7 @@ Rustより遅いのは、根本的には「WASM境界を跨ぐホスト呼び出
 
 このアーキテクチャによって、WASMフィルタのあるエッジでの不正なリクエストを弾くということと、Rust実装による網羅的なL7プロトコル対応やルーティングを両立させています。
 たとえば、正常応答が~15msかかるのに対して、認証エラーで401リクエストを弾く場合は~0.26msで処理できます。約62倍速いです。
-※実測値は開発マシン上での計測値で、計測手法などの詳細については[こちら](https://github.com/Kaikei-e/Plecto/tree/main/performance)を見てください。各種計測値と計測手法が英語でまとまっています。
+※実測値は開発マシン上での計測値で、計測手法などの詳細については[こちら](https://github.com/Kaikei-e/PlectoProxy/tree/main/performance)を見てください。各種計測値と計測手法が英語でまとまっています。
 
 
 ### deny-by-defaultなWASMの思想の継承
