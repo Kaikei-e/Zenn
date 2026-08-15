@@ -19,8 +19,39 @@ https://github.com/Kaikei-e/PlectoProxy
 
 そしてその発想をAPIゲートウェイに適用して、任意の言語からWASMに変換されたフィルターを記述できたら、開発者にとってはとても嬉しいことだと思ったので、この「Plecto」というOSSを開発しています。
 
-現状、実際に動くフィルタの例はRust/C/TS・JS/moonbit製です。契約（WIT）上はGo（TinyGo）・Python（componentize-py）でも理論上書けますが、これらの言語向けSDKとリファレンス実装はロードマップ上まだ未着手です。
-ただしこの課題も、WASI0.3とComponent Model、そして将来的にはWASI1.0がリリースされれば、GoやPythonからでもWebAssembly製のフィルターを記述することがより簡便になると思っています。
+### 対応言語の現状（2026年8月15日 更新）
+
+契約が WIT なので、WASM コンポーネントを出力できる言語であればフィルタを書けます。
+現時点で **実際に動くリファレンス実装があり、CI で毎回検証している**のは次の5言語です。
+
+| Tier | 言語 | ツールチェーン | コンポーネントサイズ | WASI import |
+|---|---|---|---|---|
+| A | Rust | `cargo` + `wasm-tools` | — | なし |
+| A | MoonBit | `moon` + `wasm-tools` | 約 22 KB | なし |
+| A | JavaScript / TypeScript | ComponentizeJS | 約 12 MB（StarlingMonkey エンジン分） | なし |
+| A | C | `wit-bindgen c` + wasi-sdk | 約 66 KB | なし |
+| B | Go | TinyGo (`-target=wasip2`) + `wit-bindgen-go` | 約 850 KB | `io`/`clocks`/`random`/`cli`/`filesystem`（空） |
+
+**Tier A は WASI import がゼロ**で、deny-by-default の Linker がそのまま
+instantiate できる形です。各例の `build.sh` は `wasi:*` の import が
+1つでも現れたらビルドを失敗させます。
+
+**Tier B** は、言語ランタイムが WASI ベースラインを前提とする場合
+（TinyGo の GC やスケジューラの初期化など）に、固定の最小スライスだけを貸す仕組みです
+（ADR 000063）。ファイルシステムアクセスもソケットも一切含まれません。
+さらに**ホスト側のビルドで `fat-guest` を有効にし、かつフィルタの manifest が
+`wasi = "minimal"` を宣言した場合にのみ有効**で、どちらか片方でも欠ければ
+instantiate に失敗します（fail-closed）。Go/TinyGo が最初の Tier B ゲストです。
+
+Tier B ゲストの stdout/stderr は、そのフィルタの `host-log` にブリッジされます
+（stdout → debug、stderr → warn）。TinyGo の panic メッセージが、それを引き起こした
+リクエストと同じトレースに出ます。
+
+### 今後について
+
+WASI 0.3 は wasmtime 46（2026-06-22）以降で既定になり、Plecto Proxy のホストも
+wasmtime 47 系で動いています。Component Model のツールチェーンが各言語で成熟するにつれ、
+より多くの言語で同じ契約に対してフィルタを書けるようになると考えています。
 
 ## では、Plectoはなんなのか？
 
